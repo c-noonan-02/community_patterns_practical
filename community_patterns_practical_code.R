@@ -142,3 +142,53 @@ mean(rowSums(data_combined_newer))
 # Hawaiian archipelago is furthest from mainlands - more isolated. Likely means
 # niches are more likely to be left open if the native species goes extinct. 
 
+
+# 3. SPECIES ACCUMULATION CURVES
+
+# use the specaccum function in the vegan package to plot the SACs
+SAC_society <- specaccum(data_society_newer)
+SAC_hawaiian <- specaccum(data_hawaiian_newer)
+SAC_samoa <- specaccum(data_samoa_newer)
+SAC_marquesas <- specaccum(data_marquesas_newer)
+SAC_fiji <- specaccum(data_fiji_newer)
+SAC_combined <- specaccum(data_combined_newer)
+
+Estim_society <- poolaccum(data_society_newer)
+Estim_hawaiian <- poolaccum(data_hawaiian_newer)
+Estim_samoa <- poolaccum(data_samoa_newer)
+Estim_marquesas <- poolaccum(data_marquesas_newer)
+Estim_fiji <- poolaccum(data_fiji_newer)
+Estim_combined <- poolaccum(data_combined_newer)
+
+par(mfrow=c(2,3))
+plot(SAC_society$richness,pch=1,lty=1,lwd=2,type="b",col="blue",ylim=c(0,max(rowMeans(Estim_society$chao))),ylab="Richness",main="Society")
+points(3:nrow(data_society_newer),rowMeans(Estim_society$chao),pch=2,lty=2,lwd=2,type="b",col="lightblue")
+plot(SAC_hawaiian$richness,pch=1,lty=1,lwd=2,type="b",col="blue",ylim=c(0,max(rowMeans(Estim_hawaiian$chao))),ylab="Richness",main="Hawai'i")
+points(3:nrow(data_hawaiian_newer),rowMeans(Estim_hawaiian$chao),pch=2,lty=2,lwd=2,type="b",col="lightblue")
+plot(SAC_samoa$richness,pch=1,lty=1,lwd=2,type="b",col="blue",ylim=c(0,max(rowMeans(Estim_samoa$chao))),ylab="Richness",main="Samoa")
+points(3:nrow(data_samoa_newer),rowMeans(Estim_samoa$chao),pch=2,lty=2,lwd=2,type="b",col="lightblue")
+plot(SAC_marquesas$richness,pch=1,lty=1,lwd=2,type="b",col="blue",ylim=c(0,max(rowMeans(Estim_marquesas$chao))),ylab="Richness",main="Marquesas")
+points(3:nrow(data_marquesas_newer),rowMeans(Estim_marquesas$chao),pch=2,lty=2,lwd=2,type="b",col="lightblue")
+plot(SAC_fiji$richness,pch=1,lty=1,lwd=2,type="b",col="blue",ylim=c(0,max(rowMeans(Estim_fiji$chao))),ylab="Richness",main="Fiji")
+points(3:nrow(data_fiji_newer),rowMeans(Estim_fiji$chao),pch=2,lty=2,lwd=2,type="b",col="lightblue")
+plot(SAC_combined$richness,pch=1,lty=1,lwd=2,type="b",col="blue",ylim=c(0,max(rowMeans(Estim_combined$chao))),ylab="Richness",main="All data")
+points(3:nrow(data_combined_newer),rowMeans(Estim_combined$chao),pch=2,lty=2,lwd=2,type="b",col="lightblue")
+par(mfrow=c(1,1))
+# SACs in blue
+# Chao2 in light blue
+
+# are these SACs saturating?
+# No - still increasing. But beginning to level off?
+
+# Does not make sense to use Chao2 because we cannot add anymore sites (islands)
+# than what exist. 
+
+# calculate the ratios between estimated and observed 
+last(rowMeans(Estim_society$chao))/last(SAC_society$richness)
+last(rowMeans(Estim_hawaiian$chao))/last(SAC_hawaiian$richness)
+last(rowMeans(Estim_samoa$chao))/last(SAC_samoa$richness)
+last(rowMeans(Estim_marquesas$chao))/last(SAC_marquesas$richness)
+last(rowMeans(Estim_fiji$chao))/last(SAC_fiji$richness)
+last(rowMeans(Estim_combined$chao))/last(SAC_combined$richness)
+# not yet - estimates are higher than the observed
+
