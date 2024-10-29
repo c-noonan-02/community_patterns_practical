@@ -104,3 +104,41 @@ data_marquesas_newer <- data_marquesas_newer[,-1]
 data_fiji_newer <- data_fiji_newer[,-1]
 data_combined_newer <- data_combined_newer[,-1]
 
+# retrieve the dimensions of the dataframes
+# returns the number of rows and columns
+dim(data_society_newer)
+dim(data_marquesas_newer)
+dim(data_hawaiian_newer)
+dim(data_fiji_newer)
+dim(data_samoa_newer)
+dim(data_combined_newer)
+
+
+# 2. RICHNESS PATTERNS
+
+# compute gamma and alpha diversity for each archipelago from the species-by-site
+# data frames
+
+# gamma diversity
+ncol(data_society_newer)
+ncol(data_hawaiian_newer)
+ncol(data_samoa_newer)
+ncol(data_marquesas_newer)
+ncol(data_fiji_newer)
+ncol(data_combined_newer)
+
+# alpha diversity
+mean(rowSums(data_society_newer))
+mean(rowSums(data_hawaiian_newer))
+mean(rowSums(data_samoa_newer))
+mean(rowSums(data_marquesas_newer))
+mean(rowSums(data_fiji_newer))
+mean(rowSums(data_combined_newer))
+
+# which is the most invaded archipelago? Does it correspond with your hypothesis
+# Hawaiian contains most invasive species
+
+# Hawaiian archipelago has larger islands
+# Hawaiian archipelago is furthest from mainlands - more isolated. Likely means
+# niches are more likely to be left open if the native species goes extinct. 
+
